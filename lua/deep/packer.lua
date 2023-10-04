@@ -6,7 +6,6 @@ vim.cmd.packadd('packer.nvim')
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	  -- or                            , branch = '0.1.x',
@@ -73,6 +72,12 @@ return require('packer').startup(function(use)
   use("github/copilot.vim")
   use("eandrju/cellular-automaton.nvim")
   use("laytan/cloak.nvim")
-
+  use{"windwp/nvim-autopairs",config=function()
+    require("nvim-autopairs").setup({})
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    require("cmp").event:on("confirm_done",cmp_autopairs.on_confirm_done())
+  end}
+  use("windwp/nvim-ts-autotag")
+  use("terrortylor/nvim-comment")
 end)
 
